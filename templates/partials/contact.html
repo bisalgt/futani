@@ -1,3 +1,6 @@
+{% load crispy_forms_tags %}
+
+
 <section id="contact" class="tm-section-pad-top tm-parallax-2">
     
       <div class="container tm-container-contact">
@@ -12,16 +15,15 @@
             </div>
             
             <div class="col-sm-12 col-md-6">
-              <form action="" method="get">
-                <input id="name" name="name" type="text" placeholder="Your Name" class="tm-input" required />
-                <input id="email" name="email" type="email" placeholder="Your Email" class="tm-input" required />
-                <textarea id="message" name="message" rows="8" placeholder="Message" class="tm-input" required></textarea>
-                <button type="submit" class="btn tm-btn-submit">Submit</button>
+              <form method="post"  enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button class="btn btn-info" type="submit">Send</button>
               </form>
             </div>
             
             <div class="col-sm-12 col-md-6">
-
+              <br><br><br>
                 <div class="contact-item">
                   <a rel="nofollow" href="https://www.tooplate.com/contact" class="item-link">
                       <i class="far fa-2x fa-comment mr-4"></i>
