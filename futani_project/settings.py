@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     # custom app
     'apps.accounts',
     'apps.gallery',
+    'apps.contact',
 ]
 
 MIDDLEWARE = [
