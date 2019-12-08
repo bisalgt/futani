@@ -20,15 +20,13 @@ from django.views.generic.base import TemplateView
 from django.conf import settings
 from django.conf.urls.static import static
 
-from apps.gallery.views import GalleryView
+from apps.home import views
 
-from apps.contact.views import form_and_galleryimages
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('', GalleryView.as_view(), name="home"),
-    path('', form_and_galleryimages, name="form"),
+    path('', views.home, name="home"),
     path('accounts/', include('apps.accounts.urls')),
-    path('gallery/', include('apps.gallery.urls')),
+    path('gallery/', include('apps.home.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
