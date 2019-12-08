@@ -40,14 +40,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # custom app
+    'apps.accounts',
+    'apps.home',
+
     # third party app
     'rest_framework',
     'crispy_forms',
 
-    # custom app
-    'apps.accounts',
-    'apps.gallery',
-    'apps.contact',
 ]
 
 MIDDLEWARE = [
@@ -144,5 +144,14 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 AUTH_USER_MODEL = 'accounts.User'
 
 
+
 LOGIN_REDIRECT_URL = reverse_lazy('home')
 LOGOUT_REDIRECT_URL = reverse_lazy('home')
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'emailasprototype@gmail.com'
+EMAIL_HOST_PASSWORD = 'futani123'
