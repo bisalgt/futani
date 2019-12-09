@@ -27,3 +27,20 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.email
+
+
+class Feedback(models.Model):
+    name = models.CharField(max_length=255, verbose_name="Name")
+    title_or_position = models.CharField(max_length=255, verbose_name="Title or Position")
+    company_name = models.CharField(max_length=255, verbose_name="Company Name")
+    image = models.ImageField(upload_to="cutomer_images")
+    feedback_message = models.TextField()
+    feedback_date = models.DateField(auto_now_add=True)
+    
+    class Meta:
+        verbose_name = _("Feedback")
+        verbose_name_plural = _("Feedbacks")
+        ordering = ("feedback_date",)
+
+    def __str__(self):
+        return self.name

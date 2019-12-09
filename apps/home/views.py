@@ -3,8 +3,8 @@ from django.core.mail import send_mail
 from django.conf import settings
 
 
-from apps.home.models import Gallery
-from apps.home.forms import ContactForm, GalleryForm
+from apps.home.models import Gallery, Feedback
+from apps.home.forms import ContactForm, GalleryForm, FeedbackForm
 
 
 def home(request):
@@ -23,7 +23,8 @@ def home(request):
     else:
         form = ContactForm()
     galleries = Gallery.objects.all()
-    context = {'form': form, 'galleries': galleries}
+    feedbacks = Feedback.objects.all()
+    context = {'form': form, 'galleries': galleries, 'feedbacks': feedbacks}
     return render(request, 'base.html', context)
 
 
@@ -41,3 +42,14 @@ def gallery(request):
     return render(request, 'home/upload_gallery.html', context)
 
 
+def feedback(request):
+    if request.method == "POST":
+        form = FeedbackForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            form = FeedbackForm()
+            return redirect("home")
+    else:
+        form = FeedbackForm()
+    context = {"form":form}
+    return render(request, 'feedback/feedbackform.html', context)
