@@ -1,19 +1,30 @@
 
-
 {% load crispy_forms_tags %}
 
-<h1>
-Feedback form </h1>
 
-<div class="bg-success">
-<div class="col-md-6">
-<h2>Feedback</h2>
-<form method="post"  enctype="multipart/form-data">
-  {% csrf_token %}
-  {{ form|crispy }}
-  <button class="btn btn-info" type="submit">Save</button>
-  <br>
-  <br>
-</form>
-</div>
-</div>
+<section id="contact" class="tm-section-pad-top tm-parallax-2">
+    
+      <div class="container tm-container-contact">
+        
+        <div class="row">
+            
+            <div class="text-center col-12">
+                <h2 class="tm-section-title mb-4">Feedback Form</h2>
+                <p class="mb-5">
+                  Feedback link.{{message}}
+                </p>
+            </div>
+            
+            <div class="col-sm-12 col-md-6">
+              <form method="post"  enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button class="btn btn-info" type="submit">Send Feedback</button>
+              </form>
+            </div>
+            
+        </div><!-- row ending -->
+        
+      </div>
+
+    </section>

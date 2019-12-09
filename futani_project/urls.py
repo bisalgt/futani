@@ -25,6 +25,8 @@ from apps.home import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name="home"),
+    path("proto/", TemplateView.as_view(template_name='proto.html'), name="prototemp"),
+    path('template/', views.feedback, name="prototype"),
     path('accounts/', include('apps.accounts.urls')),
     path('home/', include('apps.home.urls')),
 ]
