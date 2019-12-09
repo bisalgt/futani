@@ -1,0 +1,19 @@
+
+
+{% load crispy_forms_tags %}
+
+<h1>
+Feedback form </h1>
+
+<div class="bg-success">
+<div class="col-md-6">
+<h2>Feedback</h2>
+<form method="post"  enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form|crispy }}
+  <button class="btn btn-info" type="submit">Save</button>
+  <br>
+  <br>
+</form>
+</div>
+</div>
