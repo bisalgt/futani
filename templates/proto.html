@@ -20,33 +20,20 @@
     <section id="infinite" class="text-white tm-font-big tm-parallax">
       <!-- Navigation -->
       {% block navbar %}
-        {% include 'partials/navbar.html'%}
+        <nav class="navbar navbar-expand-md tm-navbar">              
+        <div class="container">   
+          <div class="tm-next">
+              <a href="{% url 'home' %}" class="navbar-brand">Futani Technology Pvt. Ltd.</a>
+          </div>             
+        </div>
+      </nav>
       {% endblock navbar %}
-    {% block home_text %}
-        {% include "partials/home_text.html" %}
-    {% endblock home_text %}
-      <div class="tm-next tm-intro-next">
-        <a href="#whatwedo" class="text-center tm-down-arrow-link">
-          <i class="fas fa-2x fa-arrow-down tm-down-arrow"></i>
-        </a>
-      </div>      
+      </div>
+
+      
     </section>
+   
 
-    {% block whatwedo %}
-        {% include "partials/whatwedo.html" %}
-    {% endblock whatwedo %}
-
-    {% block testimonial %}
-        {% include "partials/feedback.html" %}
-    {% endblock testimonial %}
-    {% block gallery %}
-        {% include "partials/gallery.html" %}
-    {% endblock gallery %}
-
-    <!-- Contact -->
-    {% block contact %}
-        {% include "partials/contact.html" %}
-    {% endblock contact %}
     
     <script src="{% static 'js/jquery-1.9.1.min.js' %}"></script>     
     <script src="{% static 'slick/slick.min.js' %}"></script>

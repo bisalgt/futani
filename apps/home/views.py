@@ -51,5 +51,5 @@ def feedback(request):
             return redirect("home")
     else:
         form = FeedbackForm()
-    context = {"form":form}
-    return render(request, 'feedback/feedbackform.html', context)
+    context = {"form":form, "message":"this is message"}
+    return render(request, 'home.html', context)
