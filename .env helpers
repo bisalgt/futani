@@ -1,0 +1,3 @@
+EMAIL = "use to send mail"
+PASSWORD = "for login to that mail, used in settings for sending mail"
+SECRET_KEY = "secret key of the project"
