@@ -9,7 +9,7 @@
               </p>
             <div class="mx-auto tm-gallery-container tm-gallery-container-2">
               <div class="tm-testimonials-carousel">
-                {% for feedback in feedbacks %}
+                {% for feedback in feedbacks|slice:":6" %}
                   <figure class="tm-testimonial-item">
                     <img src="{{feedback.image.url}}" alt="Image" class="img-fluid mx-auto">                              
                         <blockquote>{{ feedback.feedback_message}}</blockquote>
