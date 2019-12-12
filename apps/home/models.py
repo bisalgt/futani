@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from PIL import Image
 
 class Gallery(models.Model):
     title = models.CharField(max_length=255)
@@ -8,12 +9,21 @@ class Gallery(models.Model):
     upload_date = models.DateField(auto_now_add=True)
 
     class Meta:
-        ordering = ('upload_date', '-title',)
+        ordering = ('-upload_date',)
         verbose_name = _("Gallery")
         verbose_name_plural = _("Galleries")
 
     def __str__(self):
         return self.title
+    
+    def save(self):
+        super().save()
+        img = Image.open(self.image.path)
+        if img.height!=768 or img.width!=1366:
+            output_size = (1366,768)
+            img.thumbnail(output_size)
+            img.save(self.image.path)
+
 
 
 class Contact(models.Model):
@@ -27,6 +37,7 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.email
+    
 
 
 class Feedback(models.Model):
@@ -40,7 +51,16 @@ class Feedback(models.Model):
     class Meta:
         verbose_name = _("Feedback")
         verbose_name_plural = _("Feedbacks")
-        ordering = ("feedback_date",)
+        ordering = ("-feedback_date",)
 
     def __str__(self):
         return self.name
+
+
+    def save(self):
+        super().save()
+        img = Image.open(self.image.path)
+        if img.height!=768 or img.width!=1366:
+            output_size = (1366,768)
+            img.thumbnail(output_size)
+            img.save(self.image.path)
