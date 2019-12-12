@@ -25,7 +25,7 @@ def home(request):
     galleries = Gallery.objects.all()
     feedbacks = Feedback.objects.all()
     context = {'form': form, 'galleries': galleries, 'feedbacks': feedbacks}
-    return render(request, 'base.html', context)
+    return render(request, 'home/home.html', context)
 
 
 def gallery(request):
@@ -39,7 +39,7 @@ def gallery(request):
         form = GalleryForm()
     galleries = Gallery.objects.all()
     context = {'form':form, 'galleries':galleries}
-    return render(request, 'home/upload_gallery.html', context)
+    return render(request, 'gallery/gallery_form.html', context)
 
 
 def feedback(request):
@@ -52,4 +52,4 @@ def feedback(request):
     else:
         form = FeedbackForm()
     context = {"form":form, "message":"this is message"}
-    return render(request, 'home.html', context)
+    return render(request, 'feedback/feedback_form.html', context)

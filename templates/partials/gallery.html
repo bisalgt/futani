@@ -18,7 +18,7 @@
                     <div class="grid tm-gallery">
                         
                         {% for gallery in galleries|slice:":7" %}
-                            <a href="#">
+                            <a href="{{gallery.image.url}}">
                                 <figure class="effect-honey tm-gallery-item">
                                 <img src="{{gallery.image.url}}" alt="Image" class="img-fluid">
                                 <figcaption>
