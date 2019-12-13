@@ -6,10 +6,13 @@
       <div class="container tm-container-gallery">
         <div class="row">
           <div class="text-center col-12">
-              <h2 class="tm-text-primary tm-section-title mb-4">Gallery</h2>
+              <h2 class="tm-text-primary tm-section-title mb-4"><a href="{% url 'gallery_list'%}">Gallery</a></h2>
               <p class="mx-auto tm-section-desc">
                 All the events and exhibitons programmes photos are memories. They should be cherished.
               </p>
+              {% if user.is_authenticated %}
+                <p>Upload Images to Gallery. <a href="{% url 'gallery_form' %}"> Upload Images </a> </p>
+              {% endif %}
           </div>            
         </div>
         <div class="row">
@@ -17,7 +20,7 @@
                 <div class="mx-auto tm-gallery-container">
                     <div class="grid tm-gallery">
                         
-                        {% for gallery in galleries|slice:":7" %}
+                        {% for gallery in galleries|slice:":6" %}
                             <a href="{{gallery.image.url}}">
                                 <figure class="effect-honey tm-gallery-item">
                                 <img src="{{gallery.image.url}}" alt="Image" class="img-fluid">

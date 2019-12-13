@@ -6,14 +6,14 @@
             <h2 class="text-white text-center mb-4 tm-section-title">Feedback</h2>
             <p class="mx-auto tm-section-desc text-center">
                 We are responsible for the satisfaction of our customer. Thats what makes us happy.
-              </p>
+            </p>
             <div class="mx-auto tm-gallery-container tm-gallery-container-2">
               <div class="tm-testimonials-carousel">
                 {% for feedback in feedbacks|slice:":6" %}
                   <figure class="tm-testimonial-item">
                     <img src="{{feedback.image.url}}" alt="Image" class="img-fluid mx-auto">                              
                         <blockquote>{{ feedback.feedback_message}}</blockquote>
-                      <figcaption>{{feedback.name}}({{feedback.title_or_position}})</figcaption>
+                      <figcaption>{{feedback.name}} ( {{feedback.title_or_position}} )</figcaption>
                       <figcaption>{{feedback.company_name}}</figcaption>
                   </figure>
                 {% endfor %}
@@ -21,6 +21,11 @@
             </div>
           </div>
         </div>
+        {% if user.is_authenticated %}
+                <p class="mx-auto tm-section-desc text-center">Give feedback to Us. <a href="{% url 'feedback_form' %}">Send Feedback</a> </p>
+            {% endif %}
       </div>
+      
       <div class="tm-bg-overlay"></div>
+      
     </section>

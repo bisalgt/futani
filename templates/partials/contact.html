@@ -8,41 +8,36 @@
         <div class="row">
             
             <div class="text-center col-12">
-                <h2 class="tm-section-title mb-4">Contact Us</h2>
-                <p class="mb-5">
-                  Contact us in case u have any queries. We are here for you.
-                </p>
+                <h2 class="tm-section-title mb-4">Contact Us - We are here for you.</h2>
+                
             </div>
-            
             <div class="col-sm-12 col-md-6">
               <form method="post"  enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form|crispy }}
-                <button class="btn btn-info" type="submit">Send</button>
+                <div class="text-center">
+                  <button class="btn btn-info btn-block" type="submit">Send</button>
+                </div>
               </form>
             </div>
             <div class="col-sm-12 col-md-3">
             </div>
             <div class="col-sm-12 col-md-3">
-              
                 <div class="contact-item">
                  <br><br>             
                 </div>
-                
                 <div class="contact-item">
                   <a rel="nofollow" href="mailto:futanitech@gmail.com" class="item-link">
                       <i class="far fa-2x fa-envelope mr-4"></i>
                       <span class="mb-0">Email us</span>
                   </a>              
                 </div>
-                
                 <div class="contact-item">
                   <a rel="nofollow" href="https://www.google.com/maps/place/FUTANI+TECHONOLOGY+Pvt.+Ltd/@27.6770217,85.3367412,17z/data=!3m1!4b1!4m5!3m4!1s0x39eb19ebfcef077b:0x1ebdf97743d332bb!8m2!3d27.6770217!4d85.3389299" class="item-link">
                       <i class="fas fa-2x fa-map-marker-alt mr-4"></i>
                       <span class="mb-0">Our Location</span>
                   </a>              
                 </div>
-                
                 <div class="contact-item">
                   <a rel="nofollow" href="tel:9840014569" class="item-link">
                       <i class="fas fa-2x fa-phone-square mr-4"></i>
