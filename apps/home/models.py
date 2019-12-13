@@ -42,9 +42,9 @@ class Contact(models.Model):
 
 class Feedback(models.Model):
     name = models.CharField(max_length=255, verbose_name="Name")
-    title_or_position = models.CharField(max_length=255, verbose_name="Title or Position")
+    title_or_position = models.CharField(max_length=255, verbose_name="Designation")
     company_name = models.CharField(max_length=255, verbose_name="Company Name")
-    image = models.ImageField(upload_to="cutomer_images")
+    image = models.ImageField(upload_to="cutomer_images", verbose_name="Profile Picture")
     feedback_message = models.TextField()
     feedback_date = models.DateField(auto_now_add=True)
     

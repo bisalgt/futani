@@ -24,9 +24,19 @@
 
         <div class="col-sm-8 col-md-6"><br><br><br><br><br>
             <form method="post"  enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form|crispy }}
-            <button class="btn btn-info" type="submit">Send Feedback</button>
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="form-group  col-sm-6 col-md-6 mb-0">
+                        {{ form.name|as_crispy_field }}
+                    </div>
+                    <div class="form-group  col-sm-6 col-md-6 mb-0">
+                        {{ form.title_or_position|as_crispy_field }}
+                    </div>
+                </div>
+                {{form.company_name|as_crispy_field}}
+                {{form.image|as_crispy_field}}
+                {{form.feedback_message|as_crispy_field}}
+                <button class="btn btn-info btn-block" type="submit">Send Feedback</button>
             </form>
         </div>
     </div>        

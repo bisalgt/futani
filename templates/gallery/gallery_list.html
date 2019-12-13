@@ -8,12 +8,12 @@
 <div class="container">
 <br>
 <h1> <a href="{% url 'home' %}"> Futani Home Page </a> </h1><br><br>
-<h3> Gallery </h3>
+<h2 class="text-center"> Gallery - Memories along the way. </h2><br>
     <div class='row'>
             {% for gallery in galleries %}
                 <div class="col-md-4 img-thumbnail">
                         <a href="{{gallery.image.url}}"><img src="{{gallery.image.url}}" class="img-fluid" alt="Image">
-                        <p>{{gallery.title}}</p></a>
+                        <p class='text-center'>{{gallery.title}}</p></a>
                 </div>
             {% endfor %}
     </div>

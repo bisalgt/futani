@@ -3,6 +3,8 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.views.generic import ListView
+from django.contrib.auth.decorators import login_required
+
 
 from apps.home.models import Gallery, Feedback
 from apps.home.forms import ContactForm, GalleryForm, FeedbackForm
@@ -13,7 +15,6 @@ def home(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             contact = form.save(commit=False)
-            print(contact.message)
             subject = f'{contact.name} is trying to reach to you.'
             message = f'The messages sent by {contact.name} is \n {contact.message}. The  mail id is {contact.email}'
             send_from = settings.EMAIL_HOST_USER
@@ -28,7 +29,7 @@ def home(request):
     context = {'form': form, 'galleries': galleries, 'feedbacks': feedbacks}
     return render(request, 'home/home.html', context)
 
-
+@login_required
 def gallery(request):
     if request.method == "POST":
         form = GalleryForm(request.POST, request.FILES)
@@ -54,20 +55,6 @@ def feedback(request):
         form = FeedbackForm()
     context = {"form":form, "message":"this is message"}
     return render(request, 'feedback/feedback_form.html', context)
-
-# def gallery_list(request):
-#     galleries = Gallery.objects.all()
-#     paginator = Paginator(galleries, 6)
-#     page = request.GET.get('page', 1)
-#     try:
-#         galleries = paginator.page(page)
-#     except PageNotAnInteger:
-#         galleries = paginator.page(1)
-#     except EmptyPage:
-#         galleries = paginator.page(paginator.num_pages)
-
-#     context={'galleries':galleries}
-#     return render(request, 'gallery/gallery_list.html', context)
 
 
 class GalleryListView(ListView):
