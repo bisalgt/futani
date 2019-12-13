@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.conf import settings
-
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.views.generic import ListView
 
 from apps.home.models import Gallery, Feedback
 from apps.home.forms import ContactForm, GalleryForm, FeedbackForm
@@ -53,3 +54,25 @@ def feedback(request):
         form = FeedbackForm()
     context = {"form":form, "message":"this is message"}
     return render(request, 'feedback/feedback_form.html', context)
+
+# def gallery_list(request):
+#     galleries = Gallery.objects.all()
+#     paginator = Paginator(galleries, 6)
+#     page = request.GET.get('page', 1)
+#     try:
+#         galleries = paginator.page(page)
+#     except PageNotAnInteger:
+#         galleries = paginator.page(1)
+#     except EmptyPage:
+#         galleries = paginator.page(paginator.num_pages)
+
+#     context={'galleries':galleries}
+#     return render(request, 'gallery/gallery_list.html', context)
+
+
+class GalleryListView(ListView):
+    model = Gallery
+    template_name = "gallery/gallery_list.html"
+    context_object_name = "galleries"
+    ordering = ['-upload_date']
+    paginate_by = 6

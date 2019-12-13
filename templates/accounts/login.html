@@ -22,12 +22,18 @@
         </div>
 
 
-        <div class="col-sm-8 col-md-6"><br><br><br><br><br>
+        <div class="col-sm-8 col-md-6"><br>
+            <h1> Login Page </h1><br>
             <form method="post"  enctype="multipart/form-data">
             {% csrf_token %}
             {{ form|crispy }}
             <button class="btn btn-info" type="submit">Login</button>
             </form>
+            <br><br>
+            {% if user.is_authenticated %}
+                <p> Do you want to <a href="{% url 'logout' %}"><button class="btn btn-danger btn-sm">LogOut</button></a> ?</p>
+                <p> Or you want to <a href="{% url 'signup' %}"><button class="btn btn-warning btn-sm">SignUp</button></a> for someone ?</p>
+            {% endif %}
         </div>
     </div>        
     </div>
