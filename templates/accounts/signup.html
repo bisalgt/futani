@@ -1,36 +1,59 @@
 
-{% extends 'base.html' %}
 {% load crispy_forms_tags %}  
-
-{% block navbar %}
-<nav class="navbar navbar-expand-md tm-navbar">              
-<div class="container">   
-    <div class="tm-next">
-        <a href="{% url 'home' %}" class="navbar-brand">Futani Technology Pvt. Ltd.</a>
-    </div>             
-</div>
-</nav>
-{% endblock navbar %}
-
-{% block home_text %}      
+     
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 
-    <div class="text-center tm-hero-text-container">
-    <div class="row tm-hero-text-container-inner">
-        <div class="col-sm-2 col-md-3">
-            
+
+<div class="container">
+<br>
+<h1> <a href="{% url 'home' %}"> Futani Home Page </a> </h1><br><br>
+<h3> Sign Up Page </h3>
+    <div >
+        <div class="col-sm-2 col-md-3">        
         </div>
-
-
-        <div class="col-sm-8 col-md-6"><br><br><br><br><br>
+        <div><br>
             <form method="post"  enctype="multipart/form-data">
             {% csrf_token %}
-            {{ form|crispy }}
-            <button class="btn btn-info" type="submit">Sign Up</button>
+            <div class="form-row">
+                <div class="form-group  col-md-6 mb-0">
+                    {{ form.username|as_crispy_field }}
+                </div>
+                <div class="form-group  col-md-6 mb-0">
+                    {{ form.address|as_crispy_field }}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group  col-md-6 mb-0">
+                    {{ form.first_name|as_crispy_field }}
+                </div>
+                <div class="form-group  col-md-6 mb-0">
+                    {{ form.last_name|as_crispy_field }}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group  col-md-6 mb-0">
+                    {{ form.email|as_crispy_field }}
+                </div>
+                <div class="form-group  col-md-6 mb-0">
+                    {{ form.phone_number|as_crispy_field }}
+                </div>
+            </div>
+            
+            {{ form.image|as_crispy_field }}
+            <div class="form-row">
+                <div class="form-group  col-md-8 mb-0">
+                    {{ form.password1|as_crispy_field }}
+                </div>
+                <div class="form-group  col-md-8 mb-0">
+                    {{ form.password2|as_crispy_field }}
+                </div>
+            </div>
+                <button class="btn btn-info" type="submit">Sign Up</button>
             </form>
         </div>
     </div>        
     </div>
-    
-{% endblock home_text %}
-  
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>    
