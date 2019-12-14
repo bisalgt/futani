@@ -48,7 +48,13 @@
     <script src="{% static 'js/jquery.singlePageNav.min.js' %}"></script>     
     <script src="{% static 'js/bootstrap.min.js' %}"></script> 
     <script>
+      $("#custom-nav").click(function(){
+        location.href = "{% url 'login'%}"
+      }); 
 
+    </script>
+    
+    <script>
       function getOffSet(){
         var _offset = 450;
         var windowHeight = window.innerHeight;
