@@ -19,14 +19,16 @@
   </head>
   <body>    
 
-    <section id="infinite" class="text-white tm-font-big tm-parallax">
+    <section id="home"  >
+    <div id="infinite" class="text-white tm-font-big tm-parallax">
       <!-- Navigation -->
       {% block navbar %}
         {% include 'partials/navbar.html'%}
       {% endblock navbar %}
     {% block home_text %}
         {% include "partials/home_text.html" %}
-    {% endblock home_text %}      
+    {% endblock home_text %}   
+    </div>   
     </section>
 
     {% block whatwedo %}
