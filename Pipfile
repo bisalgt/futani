@@ -11,6 +11,7 @@ djangorestframework = "==3.10"
 pillow = "==6.2.1"
 django-crispy-forms = "==1.7.2"
 python-dotenv = "*"
+mysqlclient = "*"
 
 [requires]
 python_version = "3.7"

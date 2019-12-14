@@ -19,14 +19,16 @@
   </head>
   <body>    
 
-    <section id="infinite" class="text-white tm-font-big tm-parallax">
+    <section id="home"  >
+    <div id="infinite" class="text-white tm-font-big tm-parallax">
       <!-- Navigation -->
       {% block navbar %}
         {% include 'partials/navbar.html'%}
       {% endblock navbar %}
     {% block home_text %}
         {% include "partials/home_text.html" %}
-    {% endblock home_text %}      
+    {% endblock home_text %}   
+    </div>   
     </section>
 
     {% block whatwedo %}
@@ -48,7 +50,13 @@
     <script src="{% static 'js/jquery.singlePageNav.min.js' %}"></script>     
     <script src="{% static 'js/bootstrap.min.js' %}"></script> 
     <script>
+      $("#custom-nav").click(function(){
+        location.href = "{% url 'login'%}"
+      }); 
 
+    </script>
+    
+    <script>
       function getOffSet(){
         var _offset = 450;
         var windowHeight = window.innerHeight;
