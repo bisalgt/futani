@@ -2,3 +2,6 @@
 .vscode
 db.sqlite3
 media
+media/gallery
+media/customer_images
+media/profilepics
