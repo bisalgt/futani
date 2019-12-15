@@ -1,0 +1,3 @@
+for using my sql db, we have to install mysql client in our web application, then configure it on the settings.
+to configure it on the development phase we have mysql server, which i have done that with xampp.
+ we can then use sql query with mysql

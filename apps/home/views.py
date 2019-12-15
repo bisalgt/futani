@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.core.mail import send_mail
 from django.conf import settings
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
@@ -43,7 +43,7 @@ def gallery(request):
     context = {'form':form, 'galleries':galleries}
     return render(request, 'gallery/gallery_form.html', context)
 
-
+@login_required
 def feedback(request):
     if request.method == "POST":
         form = FeedbackForm(request.POST, request.FILES)
@@ -63,3 +63,35 @@ class GalleryListView(ListView):
     context_object_name = "galleries"
     ordering = ['-upload_date']
     paginate_by = 6
+
+@login_required
+def gallery_delete(request, id):
+    gallery_object = Gallery.objects.get(id=id).delete()
+    return redirect("gallery_list")
+
+
+@login_required
+def feedback_delete(request, id):
+    feedback_object_delete = Feedback.objects.get(id=id).delete()
+    return redirect("home")
+
+
+@login_required
+def gallery_update(request, id):
+    object = Gallery.objects.get(id=id)
+    form = GalleryForm(request.POST or None,request.FILES or None, instance=object)
+    if form.is_valid():
+        form.save()
+        return redirect("gallery_list")
+    return render(request, 'gallery/gallery_form.html', {'form':form})
+
+
+
+@login_required
+def feedback_update(request, id):
+    object = get_object_or_404(Feedback, id=id)
+    form = FeedbackForm(request.POST or None,request.FILES or None, instance=object)
+    if form.is_valid():
+        form.save()
+        return redirect("home")
+    return render(request, 'feedback/feedback_form.html', {'form':form})
