@@ -48,7 +48,13 @@
     <script src="{% static 'magnific-popup/jquery.magnific-popup.min.js' %}"></script>
     <script src="{% static 'js/easing.min.js' %}"></script>
     <script src="{% static 'js/jquery.singlePageNav.min.js' %}"></script>     
-    <script src="{% static 'js/bootstrap.min.js' %}"></script> 
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script>
+      $("#goto-userprofile").click(function(){
+        location.href = "{% url 'user_detail' user.id %}"
+      });
+    </script>
+    
     <script>
       $("#custom-nav").click(function(){
         location.href = "{% url 'login'%}"
