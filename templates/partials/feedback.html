@@ -13,9 +13,11 @@
                 {% for feedback in feedbacks|slice:":6" %}
                   <figure class="tm-testimonial-item">
                     <img src="{{feedback.image.url}}" alt="Image" class="img-fluid mx-auto">                              
-                        <blockquote>{{ feedback.feedback_message}}</blockquote>
+                      <blockquote>{{ feedback.feedback_message}}</blockquote>
                       <figcaption>{{feedback.name}} ( {{feedback.title_or_position}} )</figcaption>
                       <figcaption>{{feedback.company_name}}</figcaption>
+                      <p class='text-center'><a href="{% url "feedback_update" feedback.id %}">Update Feedback</a></p>
+                      <p class='text-center'><a href="{% url "feedback_delete" feedback.id %}">Delete Feedback</a></p>
                   </figure>
                 {% endfor %}
               </div>
