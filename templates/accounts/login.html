@@ -31,8 +31,8 @@
             </form>
             <br><br>
             {% if user.is_authenticated %}
-                <p> View your  <a href="{% url 'user_detail' user.id %}">Profile</a> ?</p>
-                <p> Do you want to <a href="{% url 'logout' %}"><button class="btn btn-danger btn-sm">LogOut</button></a> ?</p>
+                <p> Hello {{user.username.upper}}, do you want to view your  <a href="{{user.get_absolute_url}}">Profile</a> ?</p>
+                <p> Do you want to <a href="{% url 'logout' %}"><button class="btn btn-danger btn-sm">LogOut</button></a>  {{user.username.upper}} ?</p>
                 <p> Or you want to <a href="{% url 'signup' %}"><button class="btn btn-warning btn-sm">SignUp</button></a> for someone ?</p>
             {% endif %}
         </div>

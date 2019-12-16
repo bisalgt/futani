@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.shortcuts import reverse
+from django.utils.text import slugify
 from PIL import Image
 
 class Gallery(models.Model):
@@ -23,6 +25,11 @@ class Gallery(models.Model):
             output_size = (1366,768)
             img.thumbnail(output_size)
             img.save(self.image.path)
+
+    def get_absolute_url(self):
+        slug = slugify(self.title.lower())
+        return reverse("gallery_update", kwargs={"id": self.id, "slug":slug})
+    
 
 
 
@@ -64,3 +71,8 @@ class Feedback(models.Model):
             output_size = (1366,768)
             img.thumbnail(output_size)
             img.save(self.image.path)
+
+    def get_absolute_url(self):
+        slug = slugify(self.feedback_message[:10])
+        return reverse("feedback_update", kwargs={"id": self.id, "slug":slug})
+    

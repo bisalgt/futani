@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.shortcuts import reverse
+from django.utils.text import slugify
 
 
 class User(AbstractUser):
@@ -8,6 +9,11 @@ class User(AbstractUser):
     address = models.CharField(max_length=200, null=True, blank=True)
     image = models.ImageField(upload_to='profilepics', null=True, blank=True, verbose_name="Profile Picture")
 
+    def __str__(self):
+        return self.username
+
     def get_absolute_url(self):
-        return reverse("user_detail", kwargs={"id": self.id})
+        data = f"hello {self.username}"
+        slug = slugify(data)
+        return reverse("user_detail", kwargs={"id": self.id,"slug":slug})
     

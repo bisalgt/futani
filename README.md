@@ -1,1 +1,1 @@
-Fuatni Project
+Futani Project

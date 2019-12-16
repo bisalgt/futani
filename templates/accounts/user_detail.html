@@ -44,8 +44,8 @@
             {% if user.address %}
                 <p>Address: {{user.address}} </p>
             {% endif %}
-
-            <p> Do you want to update your profile?? <a href="{% url 'update_user' user.id%}"> UPDATE </a></p>
+            
+            <p> Do you want to update your profile?? <a href="{{user.get_absolute_url}}update/"> UPDATE </a></p>
             <p> Create new profile?? <a href="{% url 'signup' %}"> SIGNUP </a></p>
             <p> LOGOUT instead ?? <a href="{% url 'logout' %}"> LOGOUT </a></p>
         </div>
