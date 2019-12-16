@@ -14,13 +14,17 @@ class SignUpView(LoginRequiredMixin, CreateView):
 
 
 class UserUpdateView(LoginRequiredMixin, UpdateView):
+    
     form_class = CustomUserChangeForm
-    queryset = User.objects.all()
     success_url = reverse_lazy("login")
     template_name = "accounts/update.html"
 
+    def get_object(self):
+        return get_object_or_404(User, id=self.request.user.id)
+        
+        
 @login_required
-def user_detail(request, id):
+def user_detail(request, id, slug):
     user = get_object_or_404(User, id=id)
     context = {'user':user}
     return render(request, 'accounts/user_detail.html', context)

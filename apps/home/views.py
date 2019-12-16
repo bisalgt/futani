@@ -65,19 +65,19 @@ class GalleryListView(ListView):
     paginate_by = 6
 
 @login_required
-def gallery_delete(request, id):
+def gallery_delete(request, id, slug):
     gallery_object = Gallery.objects.get(id=id).delete()
     return redirect("gallery_list")
 
 
 @login_required
-def feedback_delete(request, id):
+def feedback_delete(request, id, slug):
     feedback_object_delete = Feedback.objects.get(id=id).delete()
     return redirect("home")
 
 
 @login_required
-def gallery_update(request, id):
+def gallery_update(request, id, slug):
     object = Gallery.objects.get(id=id)
     form = GalleryForm(request.POST or None,request.FILES or None, instance=object)
     if form.is_valid():
@@ -88,7 +88,7 @@ def gallery_update(request, id):
 
 
 @login_required
-def feedback_update(request, id):
+def feedback_update(request, id, slug):
     object = get_object_or_404(Feedback, id=id)
     form = FeedbackForm(request.POST or None,request.FILES or None, instance=object)
     if form.is_valid():
