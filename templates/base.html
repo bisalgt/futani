@@ -49,17 +49,25 @@
     <script src="{% static 'js/easing.min.js' %}"></script>
     <script src="{% static 'js/jquery.singlePageNav.min.js' %}"></script>     
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script>
-      $("#goto-userprofile").click(function(){
-        location.href = "{% url 'user_detail' user.id %}"
-      });
-    </script>
     
+    {% if user.is_authenticated %}
+      <script>
+        $("#goto-userprofile").click(function(){
+          location.href="{{user.get_absolute_url}}"
+        });
+      </script>
+    {% else %}
+      <script>
+        if (window.console){
+          console.log("NO USER")
+        }
+      </script>
+    {% endif %}
     <script>
+    
       $("#custom-nav").click(function(){
         location.href = "{% url 'login'%}"
       }); 
-
     </script>
     
     <script>
