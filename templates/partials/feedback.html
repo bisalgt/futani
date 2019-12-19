@@ -16,8 +16,10 @@
                       <blockquote>{{ feedback.feedback_message}}</blockquote>
                       <figcaption>{{feedback.name}} ( {{feedback.title_or_position}} )</figcaption>
                       <figcaption>{{feedback.company_name}}</figcaption>
-                      <p class='text-center'><a href="{% url "feedback_update" feedback.id %}">Update Feedback</a></p>
-                      <p class='text-center'><a href="{% url "feedback_delete" feedback.id %}">Delete Feedback</a></p>
+                      {% if user.is_superuser %}
+                        <p class='text-center'><a href="{{ feedback.get_absolute_url }}">Update Feedback</a></p>
+                        <p class='text-center'><a href="{{ feedback.get_absolute_url }}/delete/">Delete Feedback</a></p>
+                      {% endif %}
                   </figure>
                 {% endfor %}
               </div>
