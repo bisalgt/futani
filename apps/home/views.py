@@ -31,31 +31,41 @@ def home(request):
 
 @login_required
 def gallery(request):
-    if request.method == "POST":
-        form = GalleryForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
+    # if request.user.is_superuser:
+    #     print('super user')
+    # else:
+    #     print("Not super user")
+    if request.user.is_superuser:
+        if request.method == "POST":
+            form = GalleryForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+                form = GalleryForm()
+                return redirect("home")
+        else:
             form = GalleryForm()
-            return redirect("home")
+        galleries = Gallery.objects.all()
+        context = {'form':form, 'galleries':galleries}
+        return render(request, 'gallery/gallery_form.html', context)
     else:
-        form = GalleryForm()
-    galleries = Gallery.objects.all()
-    context = {'form':form, 'galleries':galleries}
-    return render(request, 'gallery/gallery_form.html', context)
+        return render(request, 'forbidden.html')
+
 
 @login_required
 def feedback(request):
-    if request.method == "POST":
-        form = FeedbackForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
+    if request.user.is_superuser:
+        if request.method == "POST":
+            form = FeedbackForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+                form = FeedbackForm()
+                return redirect("home")
+        else:
             form = FeedbackForm()
-            return redirect("home")
+        context = {"form":form, "message":"this is message"}
+        return render(request, 'feedback/feedback_form.html', context)
     else:
-        form = FeedbackForm()
-    context = {"form":form, "message":"this is message"}
-    return render(request, 'feedback/feedback_form.html', context)
-
+        return render(request, 'forbidden.html')
 
 class GalleryListView(ListView):
     model = Gallery
@@ -66,32 +76,42 @@ class GalleryListView(ListView):
 
 @login_required
 def gallery_delete(request, id, slug):
-    gallery_object = Gallery.objects.get(id=id).delete()
-    return redirect("gallery_list")
-
+    if request.user.is_superuser:
+        gallery_object = Gallery.objects.get(id=id).delete()
+        return redirect("gallery_list")
+    else:
+        return render(request, 'forbidden.html')
 
 @login_required
 def feedback_delete(request, id, slug):
-    feedback_object_delete = Feedback.objects.get(id=id).delete()
-    return redirect("home")
-
+    if request.user.is_superuser:
+        feedback_object_delete = Feedback.objects.get(id=id).delete()
+        return redirect("home")
+    else:
+        return render(request, 'forbidden.html')
 
 @login_required
 def gallery_update(request, id, slug):
-    object = Gallery.objects.get(id=id)
-    form = GalleryForm(request.POST or None,request.FILES or None, instance=object)
-    if form.is_valid():
-        form.save()
-        return redirect("gallery_list")
-    return render(request, 'gallery/gallery_form.html', {'form':form})
+    if request.user.is_superuser:
+        gallery = Gallery.objects.get(id=id)
+        form = GalleryForm(request.POST or None,request.FILES or None, instance=gallery)
+        if form.is_valid():
+            form.save()
+            return redirect("gallery_list")
+        return render(request, 'gallery/gallery_form.html', {'form':form})
+    else:
+        return render(request, 'forbidden.html')
 
 
 
 @login_required
 def feedback_update(request, id, slug):
-    object = get_object_or_404(Feedback, id=id)
-    form = FeedbackForm(request.POST or None,request.FILES or None, instance=object)
-    if form.is_valid():
-        form.save()
-        return redirect("home")
-    return render(request, 'feedback/feedback_form.html', {'form':form})
+    if request.user.is_superuser:
+        feedback = get_object_or_404(Feedback, id=id)
+        form = FeedbackForm(request.POST or None,request.FILES or None, instance=feedback)
+        if form.is_valid():
+            form.save()
+            return redirect("home")
+        return render(request, 'feedback/feedback_form.html', {'form':form})
+    else:
+        return render(request, 'forbidden.html')

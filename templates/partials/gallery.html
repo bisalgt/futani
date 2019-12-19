@@ -9,7 +9,7 @@
               <p class="mx-auto tm-section-desc">
                 All the events and exhibitons programmes photos are memories. They should be cherished.
               </p>
-              {% if user.is_authenticated %}
+              {% if request.user.is_superuser %}
                 <p>Upload Images to Gallery. <a href="{% url 'gallery_form' %}"> Upload Images </a> </p>
               {% endif %}
           </div>            
