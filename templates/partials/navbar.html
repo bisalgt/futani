@@ -25,9 +25,11 @@
                   <a class="nav-link tm-nav-link" href="#contact">Contact</a>
               </li>
               {% if not user.is_authenticated %}                    
-                <li class="nav-item">
-                    <a class="nav-link tm-nav-link" id="custom-nav" href="{% url 'login'%}">Login</a>
-                </li>
+                  <div id="custom-nav">
+                    <li class="nav-item">
+                        <a class="nav-link tm-nav-link" href="#">Login</a>
+                    </li>
+                  </div>
               {% else %}
               <div id="goto-userprofile">
                 {% if user.image %}
