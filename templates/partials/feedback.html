@@ -24,7 +24,7 @@
             </div>
           </div>
         </div>
-        {% if user.is_authenticated %}
+        {% if request.user.is_superuser %}
                 <p class="mx-auto tm-section-desc text-center">Give feedback to Us. <a href="{% url 'feedback_form' %}">Send Feedback</a> </p>
             {% endif %}
       </div>

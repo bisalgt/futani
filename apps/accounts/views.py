@@ -1,6 +1,6 @@
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView
-from django.shortcuts import get_object_or_404, render, HttpResponse
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
@@ -34,7 +34,10 @@ class SignUpView(LoginRequiredMixin, CreateView):
 def user_update(request, id, slug):
     if request.user.id == id:
         user = User.objects.get(id=id)
-        form = CustomUserChangeForm(instance=user)
+        form = CustomUserChangeForm(request.POST or None, request.FILES or None, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect("home")
         return render(request, 'accounts/update.html', {'form':form})
     else:
         return render(request, 'forbidden.html')
