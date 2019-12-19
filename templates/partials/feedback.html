@@ -16,7 +16,7 @@
                       <blockquote>{{ feedback.feedback_message}}</blockquote>
                       <figcaption>{{feedback.name}} ( {{feedback.title_or_position}} )</figcaption>
                       <figcaption>{{feedback.company_name}}</figcaption>
-                      {% if user.is_superuser %}
+                      {% if request.user.is_superuser %}
                         <p class='text-center'><a href="{{ feedback.get_absolute_url }}">Update Feedback</a></p>
                         <p class='text-center'><a href="{{ feedback.get_absolute_url }}/delete/">Delete Feedback</a></p>
                       {% endif %}
