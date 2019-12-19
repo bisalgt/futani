@@ -14,8 +14,10 @@
                 <div class="col-md-4 img-thumbnail">
                         <a href="{{gallery.image.url}}"><img src="{{gallery.image.url}}" class="img-fluid" alt="Image">
                         <p class='text-center'>{{gallery.title}}</p></a>
-                        <a href="{{ gallery.get_absolute_url }}delete/"><p class='text-center'>Delete Image</p></a>
-                        <a href="{{ gallery.get_absolute_url }}"><p class='text-center'>Update Image</p></a>
+                        {% if request.user.is_superuser %}
+                            <a href="{{ gallery.get_absolute_url }}delete/"><p class='text-center'>Delete Image</p></a>
+                            <a href="{{ gallery.get_absolute_url }}"><p class='text-center'>Update Image</p></a>
+                        {% endif %}
                 </div>
             {% endfor %}
     </div>
