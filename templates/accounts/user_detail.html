@@ -2,13 +2,20 @@
 {% load crispy_forms_tags %}  
      
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<style>
+table, th, td {
+  border: 1px solid black;
+}
+th, td {
+  padding: 15px;
+}
+</style>
 
 
-
-<div class="container" style="background-color:rgb(255, 99, 71);">
+<div class="container" style="background-color:rgb(100, 100, 100);">
 <br>
 <h1> <a href="{% url 'home' %}"> Futani Home Page </a> </h1><br><br>
-<h2 class='text-center'> {{user.username}} </h2>
+<h2 class='text-center' >Welcome {{user.username}} ! </h2>
     <div class='row' >
         <div class="col-sm-2 col-md-3">        
         </div>
@@ -25,26 +32,52 @@
             {% else %}
                 <p>You don't have set your profile pic. Please update your profile. </p>
             {% endif %}
-            {% if user.username %}
-               <p>Hello, {{user.username}}.</p>
-            {% endif %}
 
+            {% if user.username %}
+               <p>Hello,{{user.username}}.</p>
+            {% endif %}
+    <div class="table-responsive-md">
+        <table style="background:rgb(120, 120, 120);">
+        <tr>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Address</th>
+        </tr>
+        <tr>
             {% if user.first_name %}
-               <p>First name: {{user.first_name}}</p>
+               <td>{{user.first_name}}</td>
+            {% else %}
+                <td> --- </td>
             {% endif %}
 
             {% if user.last_name %}
-                <p>Last name: {{user.last_name}}</p>
+                <td>{{user.last_name}}</td>
+            {% else %}
+                <td> --- </td>
+            {% endif %}
+
+            {% if user.email %}
+                <td>{{user.email}}</td>
+            {% else %}
+                <td> --- </td>
             {% endif %}
 
             {% if user.phone_number %}
-                <p>Phone number: {{user.phone_number}}</p>
+                <td>  {{user.phone_number}}</td>
+            {% else %}
+                <td> --- </td>
             {% endif %}
 
             {% if user.address %}
-                <p>Address: {{user.address}} </p>
+                <td>{{user.address}} </td>
+            {% else %}
+                <td> --- </td>
             {% endif %}
-            
+        </tr>
+        </table>
+    </div><br>
             <p> Do you want to update your profile?? <a href="{{user.get_absolute_url}}update/"> UPDATE </a></p>
             <p> Create new profile?? <a href="{% url 'signup' %}"> SIGNUP </a></p>
             <p> LOGOUT instead ?? <a href="{% url 'logout' %}"> LOGOUT </a></p>
